@@ -9,10 +9,16 @@ const ProductListCard = ({ product }) => {
             />
         </div>
         <div className='py-3 flex gap-2 sm:gap-5 flex-col justify-between'>
-            <h1 className='line-clamp-3 text-ellipsis overflow-hidden min-w-[180px]'>{product.name}</h1>
+            <h1 className='line-clamp-3 text-ellipsis overflow-hidden min-w-[180px]'>
+                {product.name}
+            </h1>
             <div className='flex gap-5 items-center'>
-                <p className='text-gray-400 text-sm'>Qty: {product.quantity}</p>
-                <p className='text-sm font-semibold'>Rs: {product.rentalPrice}</p>
+                <p className='text-gray-400 text-sm'>
+                    Qty: {product.quantity}
+                </p>
+                <p className='text-sm font-semibold'>
+                    Rs: {product.rentalPrice}
+                </p>
             </div>
             <p className='text-sm text-gray-500 line-clamp-3 text-ellipsis overflow-hidden max-[420px]:hidden'>
                 {product.description}

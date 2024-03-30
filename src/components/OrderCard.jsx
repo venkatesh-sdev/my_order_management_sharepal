@@ -2,19 +2,22 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 
+// UI Components
 import { TfiArrowRight, TfiClose, TfiTarget } from "react-icons/tfi";
-import Modal from './Modal';
+import toast, { Toaster } from 'react-hot-toast';
 
+// State Management
 import { useDispatch } from 'react-redux';
 import { cancelOrder } from '../context/reducers/ordersReducer';
 
+// Datas
 import { orderStatusList } from '../constant/data';
 
+// Components
+import Modal from './Modal';
 import ProductListCard from './ProductListCard';
 import StatusTracking from './StatusTracking';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDate = ({ title, date }) => {
     return <div className='flex gap-2 flex-col md:ml-5'>
@@ -25,10 +28,12 @@ const ProductDate = ({ title, date }) => {
 
 const OrderCard = ({ order }) => {
     const dispatch = useDispatch();
+
     const [showTracking, setShowTracking] = useState(false);
     const [showReportModal, setShowReportModal] = useState(false);
 
     const cancelOrderFn = () => {
+        toast.success('Order Cancelled');
         dispatch(cancelOrder(order.orderId));
     }
 
@@ -41,13 +46,16 @@ const OrderCard = ({ order }) => {
 
     const submitReportFn = () => {
         setShowReportModal(prev => !prev);
-        toast('Report Submitted', { type: "success", autoClose: true, })
+        toast.success('Report Submitted');
     }
 
     return (
         <div className='bg-white w-full overflow-hidden border-2 border-gray-400 rounded-md shadow-lg '>
             {/* Order Id and Track Order */}
-            <ToastContainer />
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className='px-4 py-2 sm:p-7 flex justify-between flex-wrap gap-2'>
                 <div className='flex gap-2 sm:gap-5 items-center flex-wrap'>
                     <div className='font-medium text-md flex gap-2 sm:gap-5 bg-[#eaeaea] rounded-full px-4 py-2 '>
